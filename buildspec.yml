@@ -9,10 +9,10 @@ phases:
 
   build:
     commands:
-      # Replace these commands with the commands to build your frontend
       - mkdir -p dist  # Create the 'dist' directory if it doesn't exist
       - cp -r frontend/* dist/  # Copy frontend files to the 'dist' directory
 
 artifacts:
+  baseDirectory: GestureCam1  # Specify the base directory for artifacts
   files:
     - '**/*'
