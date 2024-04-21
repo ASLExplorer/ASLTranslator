@@ -3,16 +3,14 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      python: 3.11
+      python: 3.8
     commands:
-      - pip install -r requirements.txt
+      - pip install -r requirements.txt  # Install Python dependencies
 
   build:
     commands:
-      - mkdir -p dist  # Create the 'dist' directory if it doesn't exist
-      - cp -r frontend/* dist/  # Copy frontend files to the 'dist' directory
+      - pytest tests/  # Run your Python tests (replace 'tests/' with the path to your test directory)
 
 artifacts:
-  baseDirectory: GestureCam1  # Specify the base directory for artifacts
   files:
-    - '**/*'
+    - '**/*'  # Include all files and directories in the build context as artifacts
