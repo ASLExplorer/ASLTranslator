@@ -12,8 +12,10 @@ phases:
       - pytest tests/  # Run your Python tests (replace 'tests/' with the path to your test directory)
 
 artifacts:
-  baseDirectory: build  # Specify the directory containing built artifacts
+  baseDirectory: GestureCam1  # Specify the directory containing built artifacts
   files:
     - 'app.py'  # Include only essential application files
     - 'index.html'
     - 'data/*.csv'  # Include data files if needed (replace with your data file pattern)
+    - 'model.p'  # Include the model file (if needed)
+
