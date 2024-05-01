@@ -12,5 +12,8 @@ phases:
       - pytest tests/  # Run your Python tests (replace 'tests/' with the path to your test directory)
 
 artifacts:
+  baseDirectory: build  # Specify the directory containing built artifacts
   files:
-    - '**/*'  # Include all files and directories in the build context as artifacts
+    - 'app.py'  # Include only essential application files
+    - 'index.html'
+    - 'data/*.csv'  # Include data files if needed (replace with your data file pattern)
