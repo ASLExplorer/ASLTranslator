@@ -1,4 +1,3 @@
-# app.py
 import pickle
 import cv2
 import mediapipe as mp
@@ -6,7 +5,6 @@ import numpy as np
 from flask import Flask, render_template, Response
 
 app = Flask(__name__)
-app.run(debug=True, port=5000)
 
 model_dict = pickle.load(open('./model.p', 'rb'))
 model = model_dict['model']
@@ -22,10 +20,15 @@ labels_dict = {0: 'A', 1: 'B', 2: 'C', 3: 'D', 4: 'E', 5: 'F', 6: 'G', 7: 'H', 8
                23: 'X', 24: 'Y', 25: 'Z'}
 
 
+# Updated webcam_feed function with error handling
 def webcam_feed():
-    cap = cv2.VideoCapture(1)  # Change the index if necessary
+    cap = cv2.VideoCapture(0)  # Use camera index 0 (default camera)
 
-    while True:
+    if not cap.isOpened():
+        print("Error: Unable to open the camera")
+        yield None
+
+    while cap.isOpened():
         ret, frame = cap.read()
 
         if not ret:
