@@ -1,4 +1,3 @@
-import pickle
 import cv2
 import mediapipe as mp
 import numpy as np
@@ -19,23 +18,18 @@ labels_dict = {0: 'A', 1: 'B', 2: 'C', 3: 'D', 4: 'E', 5: 'F', 6: 'G', 7: 'H', 8
                12: 'M', 13: 'N', 14: 'O', 15: 'P', 16: 'Q', 17: 'R', 18: 'S', 19: 'T', 20: 'U', 21: 'V', 22: 'W',
                23: 'X', 24: 'Y', 25: 'Z'}
 
-
-# Updated webcam_feed function with error handling
 def webcam_feed():
-    cap = cv2.VideoCapture(1)  # Use camera index 0 (default camera)
+    cap = cv2.VideoCapture(1)  # Use camera index 1
 
     if not cap.isOpened():
-        print("Error: Unable to open the camera")
-        yield None
+        return Response("Error: Unable to open the camera", status=500)
 
     while cap.isOpened():
         ret, frame = cap.read()
 
         if not ret:
-            print("Error: Couldn't capture frame")
-            continue
+            return Response("Error: Couldn't capture frame", status=500)
 
-        # Get the dimensions of the frame
         H, W, _ = frame.shape
 
         frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
@@ -44,9 +38,9 @@ def webcam_feed():
         if results.multi_hand_landmarks:
             for hand_landmarks in results.multi_hand_landmarks:
                 mp_drawing.draw_landmarks(
-                    frame,  # image to draw
-                    hand_landmarks,  # model output
-                    mp_hands.HAND_CONNECTIONS,  # hand connections
+                    frame,
+                    hand_landmarks,
+                    mp_hands.HAND_CONNECTIONS,
                     mp_drawing_styles.get_default_hand_landmarks_style(),
                     mp_drawing_styles.get_default_hand_connections_style())
 
