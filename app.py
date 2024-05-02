@@ -1,6 +1,7 @@
 import cv2
 import mediapipe as mp
 import numpy as np
+import pickle
 from flask import Flask, render_template, Response
 
 app = Flask(__name__)
