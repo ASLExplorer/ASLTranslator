@@ -22,7 +22,7 @@ labels_dict = {0: 'A', 1: 'B', 2: 'C', 3: 'D', 4: 'E', 5: 'F', 6: 'G', 7: 'H', 8
 
 # Updated webcam_feed function with error handling
 def webcam_feed():
-    cap = cv2.VideoCapture(1)  # Use camera index 0 (default camera)
+    cap = cv2.VideoCapture(0)  # Use camera index 0 (default camera)
 
     if not cap.isOpened():
         print("Error: Unable to open the camera")
