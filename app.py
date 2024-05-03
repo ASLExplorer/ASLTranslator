@@ -20,7 +20,7 @@ labels_dict = {0: 'A', 1: 'B', 2: 'C', 3: 'D', 4: 'E', 5: 'F', 6: 'G', 7: 'H', 8
                23: 'X', 24: 'Y', 25: 'Z'}
 
 def webcam_feed():
-    cap = cv2.VideoCapture(0)  # Use camera index 1
+    cap = cv2.VideoCapture(2)  # Use camera index 1
 
     if not cap.isOpened():
         return Response("Error: Unable to open the camera", status=500)
