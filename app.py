@@ -22,16 +22,8 @@ labels_dict = {0: 'A', 1: 'B', 2: 'C', 3: 'D', 4: 'E', 5: 'F', 6: 'G', 7: 'H', 8
 def webcam_feed():
     cap = cv2.VideoCapture(1)  # Use camera index 1
 
-    if not cap.isOpened():
-        return Response("Error: Unable to open the camera", status=500)
-
     while cap.isOpened():
         ret, frame = cap.read()
-
-        if not ret:
-            return Response("Error: Couldn't capture frame", status=500)
-
-        H, W, _ = frame.shape
 
         frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
 
