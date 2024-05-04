@@ -6,7 +6,6 @@ import numpy as np
 from flask import Flask, render_template, Response
 
 app = Flask(__name__)
-app.run(debug=True, port=5000)
 
 model_dict = pickle.load(open('./model.p', 'rb'))
 model = model_dict['model']
